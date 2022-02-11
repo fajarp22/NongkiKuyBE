@@ -5,12 +5,15 @@ module.exports = (mongoose) => {
     {
       id: {
         type: Number,
+        default: 1,
       },
       itemCategoryId: {
         type: Number,
+        default: 6,
       },
       itemCode: {
         type: String,
+        default: '1',
       },
       itemName: {
         type: String,
@@ -29,15 +32,19 @@ module.exports = (mongoose) => {
         type: Boolean,
         default: false,
       },
-      kategoriHidangan:{
-        type: String
+      kategoriHidangan: {
+        type: String,
       },
-      deskripsiHidangan:{
-        type: String
+      deskripsiHidangan: {
+        type: String,
       },
-      urlHidangan:{
-        type: String
-      }
+      urlHidangan: {
+        type: String,
+      },
+      restaurantId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'nasabah',
+      },
     },
     { timestamps: true }
   );

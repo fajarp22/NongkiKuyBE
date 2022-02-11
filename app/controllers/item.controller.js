@@ -92,21 +92,25 @@ const aggregate = (filter) =>
   ]);
 
 module.exports.create = (req, res) => {
+  console.log(req.body);
   Item.find({})
     .sort({ id: -1 })
     .limit(1)
     .lean()
     .then((data) => {
-      const id = parseInt(data[0].itemCode, 10) + 1;
-      const x = new Item({
-        id,
-        itemCategoryId: req.body.itemCategoryId,
-        itemCode: req.body.itemCode,
-        itemName: req.body.itemName,
-        itemPrice: req.body.itemPrice,
-        modifiedBy: req.body.modifiedBy,
-        modifiedAt: Date.now(),
-      });
+      // const id = parseInt(data[0].itemCode, 10) + 1;
+      const x = new Item(
+        // {
+        // id,
+        // itemCategoryId: req.body.itemCategoryId,
+        // itemCode: req.body.itemCode,
+        // itemName: req.body.itemName,
+        // itemPrice: req.body.itemPrice,
+        // modifiedBy: req.body.modifiedBy,
+        // modifiedAt: Date.now(),
+        // }
+        req.body
+      );
       x.save(x)
         .then((result) => {
           res.send(result);

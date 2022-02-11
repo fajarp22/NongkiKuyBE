@@ -102,6 +102,7 @@ require('./app/routes/mortgageAppraisal.routes.js')(app);
 require('./app/routes/mortgagePayment.routes.js')(app);
 require('./app/routes/transactionReport.routes.js')(app);
 require('./app/routes/branchBalance.routes.js')(app);
+require('./app/routes/restaurant.routes.js')(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
