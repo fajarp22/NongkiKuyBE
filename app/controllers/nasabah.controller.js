@@ -91,6 +91,9 @@ const aggregate = (filter) =>
         identitasNpwp: 1,
         nama_nasabah: 1,
         nomor_hp: 1,
+        nomor_hp_darurat: 1,
+        alamat_sekarang: 1,
+        provinsi_sekarang: 1,
       },
     },
     // {
