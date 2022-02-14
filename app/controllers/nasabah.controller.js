@@ -94,6 +94,7 @@ const aggregate = (filter) =>
         nomor_hp_darurat: 1,
         alamat_sekarang: 1,
         provinsi_sekarang: 1,
+        status_hubungan: 1,
       },
     },
     // {
