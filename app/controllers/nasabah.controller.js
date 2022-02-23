@@ -507,3 +507,15 @@ module.exports.fixNasabah = (req, res) => {
     })
     .catch(() => {});
 };
+
+module.exports.showKedai = (req, res) => {
+  Nasabah.find({})
+    .sort('-createdAt')
+    .then((data) => {
+      res.send(data);
+    });
+};
+
+module.exports.showNearbyKedai = (req, res) => {
+  // Nasabah.find()
+};

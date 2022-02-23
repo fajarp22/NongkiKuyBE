@@ -11,5 +11,6 @@ module.exports = (app) => {
   router.post('/findbyidentity', [authJwt.verifyToken], nasabah.findByIdentity);
   router.post('/migrate', [authJwt.verifyToken], nasabah.migrateNasabah);
   router.post('/fixnasabah', [authJwt.verifyToken], nasabah.fixNasabah);
+  router.post('/showkedai', nasabah.showKedai);
   app.use('/api/nasabah', router);
 };
