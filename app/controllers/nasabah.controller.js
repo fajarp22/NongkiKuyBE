@@ -177,6 +177,15 @@ module.exports.findOne = (req, res) => {
     },
     { $unwind: '$modifiedBy' },
     {
+      $lookup: {
+        from: 'items',
+        localField: '_id',
+        foreignField: 'restaurantId',
+        as: 'menu',
+      },
+    },
+    // { $unwind: '$menu' },
+    {
       $addFields: {
         identitas: {
           $concat: ['$tipe_identitas', ' ', '$nomor_identitas'],
