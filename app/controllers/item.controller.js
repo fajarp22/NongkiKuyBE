@@ -22,6 +22,15 @@ const aggregate = (filter) =>
     },
     { $unwind: '$itemcategory' },
     {
+      $lookup: {
+        from: 'kedais',
+        localField: 'restaurantId',
+        foreignField: '_id',
+        as: 'restaurant',
+      },
+    },
+    { $unwind: '$restaurant' },
+    {
       $match: {
         $and: [
           {
@@ -206,7 +215,7 @@ module.exports.findAll = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || 'Terjadi kesalahan pada saat menampilkan data barang.',
+          err.message || 'Terjadi kesalahan pada saat menampilkan data menu.',
       });
     });
 };
@@ -223,6 +232,15 @@ module.exports.findAll2 = (req, res) => {
     },
     { $unwind: '$itemcategory' },
     {
+      $lookup: {
+        from: 'kedais',
+        localField: 'restaurantId',
+        foreignField: 'id',
+        as: 'restaurant',
+      },
+    },
+    { $unwind: '$restaurant' },
+    {
       $addFields: {
         itemCode: { $toInt: '$itemCode' },
         itemPrice: { $toInt: '$itemPrice' },
@@ -230,6 +248,8 @@ module.exports.findAll2 = (req, res) => {
     },
     {
       $project: {
+        kategoriHidangan:1,
+        "restaurant":1,
         // id: 1,
         itemCategoryId: 1,
         itemCode: 1,
@@ -243,6 +263,7 @@ module.exports.findAll2 = (req, res) => {
       },
     },
   ]).then((data) => res.send(data));
+  // Item.find({}).then((data)=>{res.send(data)})
 };
 
 module.exports.findOne = (req, res) => {
@@ -270,6 +291,7 @@ module.exports.findOne = (req, res) => {
       $project: {
         id: 1,
         itemCategoryId: 1,
+        kategoriHidangan:1,
         itemCode: 1,
         itemName: 1,
         itemPrice: 1,
@@ -326,6 +348,7 @@ module.exports.findOneById = (req, res) => {
       $project: {
         id: 1,
         itemCategoryId: 1,
+        kategoriHidangan:1,
         itemCode: 1,
         itemName: 1,
         itemPrice: 1,
